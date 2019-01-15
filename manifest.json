@@ -1,0 +1,45 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "A simple command line todo app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kate Sills",
+  "license": "ISC",
+  "resources": {
+    "fs": "alt-fs",
+    "chalk": {
+      "modules": {
+        "supports-color": true
+      }
+    }, 
+    "alt-fs": {
+      "modules": {
+        "fs": true
+      }
+    },
+    "alt-os": {
+      "modules": {
+        "os": true
+      }
+    },
+    "alt-process": {
+      "globals": {
+        "process": true
+      }
+    },
+    "supports-color": {
+      "modules": {
+        "os": "alt-os"
+      },
+      "globals": {
+        "process": "alt-process"
+      }
+    }
+  }
+}
+
+// clean todo makes use of the process global and the os module and fs module
+// legacy manifest - state that the legacy todo makes use of fs and everything that it's importing. Not using the process global. 

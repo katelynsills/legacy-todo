@@ -1,0 +1,21 @@
+{
+  "name": "legacy-todo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kate Sills",
+  "license": "ISC",
+  "dependencies": {
+    "alt-fs": "file:custom_modules/alt-fs",
+    "alt-os": "file:custom_modules/alt-os",
+    "alt-process": "file:custom_modules/alt-process",
+    "attenuate-fs": "file:custom_modules/attenuate-fs",
+    "attenuate-os": "file:custom_modules/attenuate-os",
+    "attenuate-process": "file:custom_modules/attenuate-process",
+    "chalk": "^2.4.2",
+    "minimist": "^1.2.0"
+  }
+}
