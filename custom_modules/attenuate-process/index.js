@@ -1,3 +1,4 @@
+/*global module*/
 // export a function that goes from the real process obj 
 // to the attentuated process obj that contains only what supports-color needs
 
@@ -10,7 +11,7 @@ const attenuateProcess = (originalProcess) => {
     platform: 'win32',
     versions: originalProcess.versions,
     stdout: originalProcess.stdout,
-    stderr: originalProcess.stderr,
+    stderr: originalProcess.stderr
   });
 };
 
