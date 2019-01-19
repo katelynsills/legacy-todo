@@ -1,3 +1,4 @@
+/* global module */
 const harden = Object.freeze;
 
 const attenuateOs = originalOs =>

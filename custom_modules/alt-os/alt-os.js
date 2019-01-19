@@ -1,3 +1,4 @@
+/* global require module */
 const attenuateOs = require('attenuate-os');
 const os = require('os');
 

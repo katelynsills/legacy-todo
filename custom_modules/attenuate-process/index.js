@@ -1,3 +1,4 @@
+/* global module */
 // export a function that goes from the real process obj
 // to the attentuated process obj that contains only what supports-color needs
 
@@ -12,4 +13,5 @@ const attenuateProcess = originalProcess =>
     stdout: originalProcess.stdout,
     stderr: originalProcess.stderr,
   });
+
 module.exports = attenuateProcess;

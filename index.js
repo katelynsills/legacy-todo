@@ -1,3 +1,4 @@
+/* global require process */
 // legacy
 
 // run from command line
@@ -8,6 +9,7 @@
 const fs = require('fs');
 const parseArgs = require('minimist');
 const chalk = require('chalk');
+const readline = require('readline');
 
 const todoFile = 'todo.txt';
 
@@ -26,12 +28,18 @@ const addTodo = args => {
 const highlightTodo = todoLine => {
   const [priority, todo] = todoLine.split(': ');
   switch (priority) {
-    case 'High':
+    case 'High': {
       return chalk.red(todo);
-    case 'Medium':
+    }
+    case 'Medium': {
       return chalk.yellow(todo);
-    case 'Low':
+    }
+    case 'Low': {
       return chalk.green(todo);
+    }
+    default: {
+      throw new Error(`unrecognized priority ${priority}`);
+    }
   }
 };
 
@@ -39,13 +47,12 @@ const displayTodos = () => {
   try {
     console.log(chalk.greenBright("****** TODAY'S TODOS ********"));
     const stream = fs.createReadStream(todoFile);
-    const lineReader = require('readline').createInterface({
+    const lineReader = readline.createInterface({
       input: stream,
     });
     lineReader.on('line', line => {
       console.log(highlightTodo(line));
     });
-    // lineReader.on('close', () => console.log('That\'s it!'))
   } catch (err) {
     if (err.includes('ENOENT')) {
       console.log('Nothing to display. Please add a todo first');

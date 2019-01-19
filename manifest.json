@@ -9,6 +9,12 @@
   "author": "Kate Sills",
   "license": "ISC",
   "resources": {
+    "index": {
+      "modules": {
+        "fs": "alt-fs",
+        "chalk": true
+      }
+    },
     "fs": "alt-fs",
     "chalk": {
       "modules": {
