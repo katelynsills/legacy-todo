@@ -2,7 +2,7 @@
 // legacy 
 
 // run from command line
-// takes an argument 
+// takes an argument
 // saves it to file, appending it
 // displays data, highlighing high, medium, and low priority tasks
 
@@ -12,20 +12,20 @@ const chalk = require('chalk');
 
 const todoFile = 'todo.txt';
 
-const addTodoToFile = (todo, priority='Medium') => {
-  fs.appendFile(todoFile, `${priority}: ${todo} \n`, (err) => {
+const addTodoToFile = (todo, priority = 'Medium') => {
+  fs.appendFile(todoFile, `${priority}: ${todo} \n`, err => {
     if (err) { throw err; }
     console.log('Todo was added');
   });
 };
 
-const addTodo = (args) => {
+const addTodo = args => {
   const {todo, priority} = args;
   addTodoToFile(todo, priority);
 };
 
-const highlightTodo = (todoLine) => {
-  const [priority, todo] = todoLine.split(": ");
+const highlightTodo = todoLine => {
+  const [priority, todo] = todoLine.split(': ');
   switch (priority) {
     case 'High': {
       return chalk.red(todo);
@@ -42,6 +42,9 @@ const highlightTodo = (todoLine) => {
   }
 };
 
+// note that if the file does not exist, an error is thrown,
+// and somehow this doesn't catch it
+
 const displayTodos = () => {
   try {
     console.log(chalk.greenBright('****** TODAY\'S TODOS ********'));
@@ -49,22 +52,24 @@ const displayTodos = () => {
     const lineReader = require('readline').createInterface({
       input: stream
     });
-    lineReader.on('line', (line) => {
+    lineReader.on('line', line => {
       console.log(highlightTodo(line));
     });
     //lineReader.on('close', () => console.log('That\'s it!'));
   } catch (err) {
-    if (err.includes('ENOENT')) {
-      console.log('Nothing to display. Please add a todo first');
-    }
+    console.log(
+      chalk.red(
+        'There was an error, meaning that there was probably nothing to display. Please add a todo first'
+      )
+    );
   }
 };
 
-/* we expect { 
-    _: [], 
-    'add'|'display': true, 
-    todo: todoText, 
-    priority:'Low'|'Medium'|'High' 
+/* we expect {
+    _: [],
+    'add'|'display': true,
+    todo: todoText,
+    priority:'Low'|'Medium'|'High'
 }
 todo is required if run is 'add', and priority defaults to Medium
 */
